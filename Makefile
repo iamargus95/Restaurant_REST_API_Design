@@ -14,6 +14,6 @@ run:
 clean:
 	@echo "Cleaning up..."
 	docker-compose down
-	rm eKYC-service-gin.o
+	rm restaurantAPI.o
 	go clean
 	clear
