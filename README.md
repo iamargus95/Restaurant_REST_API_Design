@@ -39,18 +39,18 @@ information in database.
 - The request must have a restaurant ID as a parameter. The request may optionally have a “page” parameter, ex. ?page=2 as part of the URL. 
 - This is used for paginating the restaurant menu items. You can sort the menu items by their category when returning a list to the users (more on it below).
 - The other requirements for this API are as follows:
-    - 1. Validate auth token, if not valid, return appropriate error message along with http code to the user.
-    - 2. If auth token is valid, return a list of menu items for that restaurant to the user.
-    - 3. Use “page” param to return appropriate page of the records. Assume we return 10 records per page. If
+    1. Validate auth token, if not valid, return appropriate error message along with http code to the user.
+    2. If auth token is valid, return a list of menu items for that restaurant to the user.
+    3. Use “page” param to return appropriate page of the records. Assume we return 10 records per page. If
     no page param is passed, just return the first page of menu items.
-    - 4. A Restaurant Menu Item has following data elements
+    4. A Restaurant Menu Item has following data elements
         - ID
         - Name
         - Description
         - Menu category (one of following)
             - Starter, Side-dish, Main-course, Beverage, Dessert
         - Price
-    - 5. When returning menu items, sort them by their menu category. i.e. all starters should come first, then
+    5. When returning menu items, sort them by their menu category. i.e. all starters should come first, then
     all side-dishes, followed by main-course, beverage and then dessert.
 
 ## Evaluation criteria
