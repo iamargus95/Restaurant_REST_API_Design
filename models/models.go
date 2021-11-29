@@ -17,13 +17,19 @@ func (t *Users) TableName() string {
 	return "users"
 }
 
-// type Restaurant struct {
-// 	gorm.Model
-// 	Name        string
-// 	Description string
-// 	Star_rating float32
-// 	Address     string
-// }
+type Pagination struct {
+	Limit int    `json:"limit"`
+	Page  int    `json:"page"`
+	Sort  string `json:"sort"`
+}
+
+type Restaurant struct {
+	gorm.Model
+	Name        string
+	Description string
+	Star_rating float32
+	Address     string
+}
 
 // type Menu struct {
 // 	gorm.Model
