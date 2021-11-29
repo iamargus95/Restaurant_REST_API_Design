@@ -13,8 +13,8 @@ func StartGin() {
 	r.GET("/", Welcome)
 	r.NoRoute(NotFound)
 	r.POST("/signup", ctrl.Signup)
-	// r.GET("/restaurants", )
-	// r.GET("/menu", )
+	r.GET("/restaurants", ctrl.ListRestaurants) //.Use(middlewares.EnsureLoggedIn())
+	// r.GET("/menu", ) //Middlewares currently not working
 
 	log.Fatal(r.Run("localhost:8080"))
 }
