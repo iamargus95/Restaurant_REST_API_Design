@@ -18,9 +18,9 @@ func (t *Users) TableName() string {
 }
 
 type Pagination struct {
-	Limit int    `json:"limit"`
-	Page  int    `json:"page"`
-	Sort  string `json:"sort"`
+	Per_Page int    `json:"per_page"`
+	Page     int    `json:"page"`
+	Sort     string `json:"sort"`
 }
 
 type Restaurant struct {
