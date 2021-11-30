@@ -10,23 +10,21 @@ import (
 func GeneratePaginationFromRequest(c *gin.Context) models.Pagination {
 	// Initializing default
 	//	var mode string
-	limit := 10
+	per_page := 10
 	page := 1
-	sort := "created_at asc"
+	sort := "star_rating desc"
 	query := c.Request.URL.Query()
 	for key, value := range query {
 		queryValue := value[len(value)-1]
 		switch key {
-		case "limit":
-			limit, _ = strconv.Atoi(queryValue)
+		case "per_page":
+			per_page, _ = strconv.Atoi(queryValue)
 		case "page":
 			page, _ = strconv.Atoi(queryValue)
-		case "sort":
-			sort = queryValue
 		}
 	}
 	return models.Pagination{
-		Limit: limit,
+		Limit: per_page,
 		Page:  page,
 		Sort:  sort,
 	}
