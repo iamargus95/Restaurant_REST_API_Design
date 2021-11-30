@@ -30,8 +30,10 @@ func init() {
 		os.Exit(100)
 	}
 
-	DB = conn
+	// Shows RAW SQL Queries in stdout
+	conn.Logger.LogMode(4)
 
+	DB = conn
 	sqlDB, _ := DB.DB()
 
 	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
