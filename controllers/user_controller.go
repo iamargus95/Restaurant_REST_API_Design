@@ -51,3 +51,20 @@ func ListRestaurants(ctx *gin.Context) {
 		"list of restaurants": content,
 	})
 }
+
+func Menu(ctx *gin.Context) {
+
+	restaurantDetails := utils.GetRestaurantIDFromRequest(ctx)
+	content, err := s.GetMenuItems(&restaurantDetails)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": err,
+		})
+		ctx.Abort()
+		return
+	}
+
+	ctx.JSON(http.StatusAccepted, gin.H{
+		"Menu Items": content,
+	})
+}
