@@ -2,7 +2,6 @@ package services
 
 import (
 	"github.com/google/uuid"
-	"github.com/iamargus95/restaurant_rest_api_design/dbconn"
 	conn "github.com/iamargus95/restaurant_rest_api_design/dbconn"
 	"github.com/iamargus95/restaurant_rest_api_design/models"
 	r "github.com/iamargus95/restaurant_rest_api_design/resources"
@@ -34,7 +33,7 @@ func Signup(body r.SignupPayload) (uuid.UUID, error) {
 func ListRestaurants(pagination *models.Pagination) (*[]models.Restaurant, error) {
 
 	var listOfRestaurants []models.Restaurant
-	db := dbconn.GetDB()
+	db := conn.GetDB()
 
 	offset := (pagination.Page - 1) * pagination.Limit
 	queryBuilder := db.Limit(pagination.Limit).Offset(offset).Order(pagination.Sort)
@@ -44,4 +43,17 @@ func ListRestaurants(pagination *models.Pagination) (*[]models.Restaurant, error
 	}
 
 	return &listOfRestaurants, nil
+}
+
+func GetMenuItems(restaurant *models.Menu) (*[]models.Menu_Item, error) {
+
+	var menuItems []models.Menu_Item
+	db := conn.GetDB()
+
+	dbtranx := db.Find(&menuItems).Where("restaurant_id = ?", restaurant.Restaurant_ID).Order(restaurant.Sort)
+	if dbtranx.Error != nil {
+		return nil, dbtranx.Error
+	}
+
+	return &menuItems, nil
 }
