@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -41,11 +40,10 @@ func TestGeneratePaginationFromRequest(t *testing.T) {
 	c, _ := gin.CreateTestContext(w)
 
 	for _, test := range testData {
-		c.Request, _ = http.NewRequest(http.MethodPost, test.urlWithParams, nil)
+		c.Request, _ = http.NewRequest(http.MethodGet, test.urlWithParams, nil)
 		c.Request.Header.Set("Content-Type", "application/json")
 
 		got := GeneratePaginationFromRequest(c)
-		fmt.Println(got)
 		if got.Per_Page != test.per_page && got.Page != test.page {
 			t.Fail()
 		}
