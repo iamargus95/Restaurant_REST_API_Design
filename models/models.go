@@ -53,7 +53,7 @@ const (
 type Menu_Item struct {
 	gorm.Model
 	RestaurantID  int
-	Restaurant    Restaurant
+	Restaurant    Restaurant `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	Name          string
 	Description   string
 	Menu_Category Category
