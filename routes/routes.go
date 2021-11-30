@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	ctrl "github.com/iamargus95/restaurant_rest_api_design/controllers"
+	"github.com/iamargus95/restaurant_rest_api_design/middlewares"
 )
 
 func StartGin() {
@@ -13,8 +14,8 @@ func StartGin() {
 	r.GET("/", Welcome)
 	r.NoRoute(NotFound)
 	r.POST("/signup", ctrl.Signup)
-	r.GET("/list-restaurants", ctrl.ListRestaurants) //.Use(middlewares.EnsureLoggedIn())
-	r.GET("/menu", ctrl.Menu)                        //Middlewares currently not working
+	r.GET("/list-restaurants", ctrl.ListRestaurants).Use(middlewares.EnsureLoggedIn()) //Middlewares currently not working just for this route
+	r.GET("/menu", ctrl.Menu).Use(middlewares.EnsureLoggedIn())
 
 	log.Fatal(r.Run("localhost:8080"))
 }
