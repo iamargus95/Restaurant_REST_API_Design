@@ -31,11 +31,34 @@ type Restaurant struct {
 	Address     string
 }
 
-// type Menu struct {
-// 	gorm.Model
-// 	Restaurant_id Restaurant
-// 	Name          string
-// 	Description   string
-// 	Menu_category int
-// 	Price         float32
-// }
+func (t *Restaurant) TableName() string {
+	return "restaurants"
+}
+
+type Menu struct {
+	Restaurant_ID int    `json:"restaurantid"`
+	Sort          string `json:"sort"`
+}
+
+type Menu_Category int
+
+const (
+	Starter Menu_Category = iota
+	Side_Dish
+	Main_Course
+	Beverage
+	Dessert
+)
+
+type Menu_Item struct {
+	gorm.Model
+	Restaurant_Id Restaurant
+	Name          string
+	Description   string
+	Menu_Category Menu_Category
+	Price         float32
+}
+
+func (t *Menu_Item) TableName() string {
+	return "Menu_Items"
+}
