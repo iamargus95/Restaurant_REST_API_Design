@@ -47,7 +47,7 @@ func ListRestaurants(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusAccepted, gin.H{
+	ctx.JSON(http.StatusOK, gin.H{
 		"list of restaurants": content,
 	})
 }
@@ -64,7 +64,7 @@ func Menu(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusAccepted, gin.H{
+	ctx.JSON(http.StatusOK, gin.H{
 		"Menu Items": content,
 	})
 }
