@@ -35,8 +35,8 @@ func ListRestaurants(pagination *models.Pagination) (*[]models.Restaurant, error
 	var listOfRestaurants []models.Restaurant
 	db := conn.GetDB()
 
-	offset := (pagination.Page - 1) * pagination.Limit
-	queryBuilder := db.Limit(pagination.Limit).Offset(offset).Order(pagination.Sort)
+	offset := (pagination.Page - 1) * pagination.Per_Page
+	queryBuilder := db.Limit(pagination.Per_Page).Offset(offset).Order(pagination.Sort)
 	dbtranx := queryBuilder.Model(&models.Restaurant{}).Find(&listOfRestaurants)
 	if dbtranx.Error != nil {
 		return nil, dbtranx.Error
