@@ -24,8 +24,8 @@ func GeneratePaginationFromRequest(c *gin.Context) models.Pagination {
 		}
 	}
 	return models.Pagination{
-		Limit: per_page,
-		Page:  page,
-		Sort:  sort,
+		Per_Page: per_page,
+		Page:     page,
+		Sort:     sort,
 	}
 }
