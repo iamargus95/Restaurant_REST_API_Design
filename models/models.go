@@ -40,10 +40,10 @@ type Menu struct {
 	Sort          string `json:"sort"`
 }
 
-type Menu_Category int
+type Category int
 
 const (
-	Starter Menu_Category = iota
+	Starter Category = iota
 	Side_Dish
 	Main_Course
 	Beverage
@@ -52,13 +52,14 @@ const (
 
 type Menu_Item struct {
 	gorm.Model
-	Restaurant_Id Restaurant
+	RestaurantID  int
+	Restaurant    Restaurant
 	Name          string
 	Description   string
-	Menu_Category Menu_Category
+	Menu_Category Category
 	Price         float32
 }
 
 func (t *Menu_Item) TableName() string {
-	return "Menu_Items"
+	return "menu_items"
 }
