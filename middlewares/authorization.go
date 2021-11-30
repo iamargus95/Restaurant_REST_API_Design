@@ -40,7 +40,7 @@ func validateToken(ctx *gin.Context) {
 	result := db.First(&user, "guid = ?", auth)
 	if result.Error != nil {
 		ctx.JSON(http.StatusUnauthorized, gin.H{
-			"error": "invalid X-Auth-Token Provided",
+			"error": "X-Auth-Token was never issued",
 		})
 		ctx.Abort()
 		return
